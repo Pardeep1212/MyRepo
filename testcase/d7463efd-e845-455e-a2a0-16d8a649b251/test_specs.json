@@ -1,0 +1,20 @@
+{
+  "name": "Integration - End-to-End Incident Classification Workflow",
+  "description": "Tests the full workflow from API request through IncidentProcessor, LLMService, CatalogIntegration, AuditLogger, and ErrorHandler.",
+  "test_type": "integration",
+  "input": "POST /classify with valid IncidentRequest; all dependencies mocked or stubbed for LLM, catalog, and audit logging.",
+  "output": "IncidentResponse with all fields populated, audit log entry created, and trace steps executed.",
+  "success_criteria": [
+    "IncidentProcessor.classify_incident is called",
+    "LLMService.invoke_llm is called",
+    "CatalogIntegration.fetch_catalog_details is called",
+    "AuditLogger.log_audit_entry is called",
+    "IncidentResponse.success is True",
+    "trace_step context managers are entered and exited"
+  ],
+  "error_scenarios": [
+    "LLMService.invoke_llm raises exception",
+    "CatalogIntegration.fetch_catalog_details raises exception",
+    "AuditLogger.log_audit_entry fails"
+  ]
+}

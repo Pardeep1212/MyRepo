@@ -1,0 +1,18 @@
+{
+  "name": "Functional - Incident Classification Fallback",
+  "description": "Validates fallback logic when confidence_score is low or missing, ensuring escalation and proper error messaging.",
+  "test_type": "functional",
+  "input": "POST /classify with IncidentRequest where incident_description is ambiguous or insufficient for confident classification.",
+  "output": "IncidentResponse with success=False, fallback=True, error containing FALLBACK_RESPONSE.",
+  "success_criteria": [
+    "response.success is False",
+    "response.fallback is True",
+    "response.error contains 'Insufficient information'",
+    "response.incident_type is None or empty",
+    "response.priority is None or empty"
+  ],
+  "error_scenarios": [
+    "LLM output cannot be parsed",
+    "confidence_score missing or < 0.7"
+  ]
+}

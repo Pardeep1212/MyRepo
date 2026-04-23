@@ -1,0 +1,17 @@
+{
+  "name": "Integration - API Exception Handling",
+  "description": "Validates that API-level exception handlers for RequestValidationError and JSONDecodeError return correct error responses.",
+  "test_type": "integration",
+  "input": "POST /classify with malformed JSON or invalid IncidentRequest schema.",
+  "output": "JSONResponse with appropriate status code (422 or 400), error message, and fix_tip.",
+  "success_criteria": [
+    "status_code is 422 for RequestValidationError",
+    "status_code is 400 for JSONDecodeError",
+    "response.error contains 'Malformed JSON' or 'invalid request fields'",
+    "response.fix_tip is present"
+  ],
+  "error_scenarios": [
+    "Malformed JSON in request body",
+    "Missing required fields in IncidentRequest"
+  ]
+}

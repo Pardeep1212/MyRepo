@@ -1,0 +1,7 @@
+{
+  "incident_description": "string",
+  "impact": "string",
+  "urgency": "string",
+  "configuration_context": "string",
+  "service_context": "string"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Functional - Input Validation Failure",
+  "description": "Ensures that invalid input (e.g., empty incident_description, missing impact or urgency) is rejected with proper error response.",
+  "test_type": "functional",
+  "input": "POST /classify with IncidentRequest missing required fields or with empty incident_description.",
+  "output": "JSONResponse with success=False, error describing validation failure, fix_tip provided.",
+  "success_criteria": [
+    "response.success is False",
+    "response.error contains 'Validation error'",
+    "response.fix_tip is present"
+  ],
+  "error_scenarios": [
+    "incident_description empty",
+    "impact or urgency missing",
+    "incident_description exceeds 50000 chars"
+  ]
+}

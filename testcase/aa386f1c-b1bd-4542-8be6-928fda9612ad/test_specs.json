@@ -1,0 +1,18 @@
+{
+  "name": "Integration - Observability Lifespan Initialization",
+  "description": "Ensures that _obs_lifespan initializes observability, logs configuration summary, and connects to observability database.",
+  "test_type": "integration",
+  "input": "Startup of FastAPI app with lifespan=_obs_lifespan; Config variables set.",
+  "output": "Startup logs indicating successful initialization, database connection, and telemetry monitoring.",
+  "success_criteria": [
+    "_obs_lifespan logs configuration summary",
+    "Observability database connection is attempted",
+    "Telemetry monitoring is enabled or warning is logged",
+    "No unhandled exceptions during startup"
+  ],
+  "error_scenarios": [
+    "Database connection fails",
+    "Telemetry initialization fails",
+    "Missing Config variables"
+  ]
+}

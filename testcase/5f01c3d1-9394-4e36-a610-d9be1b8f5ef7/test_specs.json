@@ -1,0 +1,22 @@
+{
+  "name": "Functional - Successful Incident Classification",
+  "description": "Validates that the /classify endpoint correctly classifies and prioritizes a well-formed incident request.",
+  "test_type": "functional",
+  "input": "POST /classify with IncidentRequest containing valid incident_description, impact, urgency, configuration_context, and service_context.",
+  "output": "IncidentResponse with success=True, incident_type, priority, confidence_score, rationale, audit_log_entry, fallback=False, error=None.",
+  "success_criteria": [
+    "response.success is True",
+    "response.incident_type is not None",
+    "response.priority is not None",
+    "response.confidence_score >= 0.7",
+    "response.rationale is not None",
+    "response.audit_log_entry == 'logged'",
+    "response.fallback is False",
+    "response.error is None"
+  ],
+  "error_scenarios": [
+    "LLM API error",
+    "CatalogIntegration error",
+    "AuditLogger error"
+  ]
+}
